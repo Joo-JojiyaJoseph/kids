@@ -5,7 +5,9 @@
             <nav class="mt-6">
                 <ul>
                     <li>
-                        <a href="" class="bg-gray-200 border p-3 rounded-lg w-full block">Dashboard</a>
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
                     </li>
                 </ul>
             </nav>
