@@ -6,7 +6,7 @@
             </h2>
         </div>
         <div>
-            <a href="">
+            <a href="{{ route('user.create') }}">
                 <x-primary-button>
                     Add User
                 </x-primary-button>
@@ -14,9 +14,11 @@
         </div>
     </div>
 
-    {{-- <div class="py-12">
-        <div class="w-11/12 mx-auto grid grid-cols-4">
-
+    <div class="py-12">
+        <div class="w-11/12 mx-auto">
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <livewire:user.index />
+            </div>
         </div>
-    </div> --}}
+    </div>
 </x-app-layout>
