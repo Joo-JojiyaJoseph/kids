@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,9 @@ Route::middleware('auth')->group(function () {
 
     // User
     Route::resource('user', UserController::class);
+
+    //Hr
+    Route::resource('employee', EmployeeController::class);
 });
 
 require __DIR__.'/auth.php';
