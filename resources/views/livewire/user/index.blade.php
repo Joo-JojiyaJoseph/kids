@@ -22,9 +22,17 @@
                     <td class="border-r text-center py-3">{{ $user->name }}</td>
                     <td class="border-r text-center py-3">{{ $user->email }}</td>
                     <td class="border-r text-center py-3"><span
-                            class="text-sm font-medium px-2 py-0.5 rounded-full {{ $user->user_role }}">{{ $user->user_role }}</span>
+                            class="text-sm font-medium px-2 py-0.5 rounded-full {{ $user->role }}">{{ $user->role }}</span>
                     </td>
-                    <td></td>
+                    <td class="text-center">
+                        <a href="{{ route('user.edit', $user) }}">Edit</a>
+                        <div>
+                            <x-danger-button x-data=""
+                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion-{{ $user->id }}')">{{ __('Delete') }}</x-danger-button>
+
+                            <x-user.delete-modal :user="$user->id" />
+                        </div>
+                    </td>
                 </tr>
             @empty
                 <tr>
