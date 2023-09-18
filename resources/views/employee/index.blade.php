@@ -6,7 +6,8 @@
             </h2>
         </div>
         <div>
-            <a href="">
+            <!-- Open Modal Button -->
+            <a href="{{ route('employee.create') }}">
                 <x-primary-button>
                     Add Employee
                 </x-primary-button>
@@ -15,15 +16,7 @@
     </div>
     <section>
         <div class="container mx-auto">
-            <livewire:employee.employeeview/>
+            <livewire:employee.employeeview />
         </div>
     </section>
-
-    {{-- <div class="py-12">
-        <div class="w-11/12 mx-auto grid grid-cols-4">
-
-        </div>
-    </div> --}}
-
-
 </x-app-layout>

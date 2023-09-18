@@ -8,25 +8,31 @@ use Livewire\Component;
 class Employeeview extends Component
 {
     public $employees;
-    public $sortBy = 'name'; // Default sorting column
-    public $sortDirection = 'asc'; // Default sorting direction
+
+    public $searchTerm ="";
+
+    public function search()
+    {
+        $this->employees = Employee::where('name', 'like', '%' . $this->searchTerm . '%')->get();
+    }
     public function render()
     {
-        // $this->employees=Employee::orderBy()-> all();
-        // $this->employees = Employee::orderBy('name')->get();
-        $this->employees = Employee::orderBy($this->sortBy, $this->sortDirection)->get();
-
-        // return view('livewire.employee.employee');
+        $this->employees = Employee::where('name', 'like', '%'.$this->searchTerm.'%')->get();
         return view('livewire.employee.employeeview');
     }
-    public function sortBy($field)
-    {
-        if ($this->sortBy === $field) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
-            $this->sortDirection = 'asc';
-        }
 
-        $this->sortBy = $field;
-    }
+    // public function editEmployee($id)
+    // {
+    //     return redirect()->route('employee.show',$id);
+    // }
+
+    // public function addEmployee()
+    // {
+    //    return view('employee.add');
+    // }
+    // public function deleteEmployee($id)
+    // {
+    //     return redirect()->route('employee.destroy',$id);
+
+    // }
 }
