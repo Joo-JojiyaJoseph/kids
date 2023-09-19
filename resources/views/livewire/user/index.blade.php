@@ -24,14 +24,16 @@
                     <td class="border-r text-center py-3"><span
                             class="text-sm font-medium px-2 py-0.5 rounded-full {{ $user->role }}">{{ $user->role }}</span>
                     </td>
-                    <td class="text-center">
+                    <td class="text-center flex items-center justify-center gap-x-4">
                         <a href="{{ route('user.edit', $user) }}">Edit</a>
-                        <div>
-                            <x-danger-button x-data=""
-                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion-{{ $user->id }}')">{{ __('Delete') }}</x-danger-button>
+                        @if ($user->id != 1)
+                            <div>
+                                <x-danger-button x-data=""
+                                    x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion-{{ $user->id }}')">{{ __('Delete') }}</x-danger-button>
 
-                            <x-user.delete-modal :user="$user->id" />
-                        </div>
+                                <x-user.delete-modal :user="$user->id" />
+                            </div>
+                        @endif
                     </td>
                 </tr>
             @empty

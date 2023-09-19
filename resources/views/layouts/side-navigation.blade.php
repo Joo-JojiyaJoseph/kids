@@ -1,4 +1,4 @@
-<aside class="relative z-30 flex-shrink-0 hidden sm:w-52 lg:w-64 2xl:w-80 overflow-y-auto bg-white shadow-sm md:block">
+<aside class="relative z-30 flex-shrink-0 hidden sm:w-40 lg:w-64 2xl:w-80 overflow-y-auto bg-white shadow-sm md:block">
     <div class="bg-white w-full h-full">
         <div class="px-4 py-6">
             <h1 class="text-4xl font-bold tracking-widest">KMS</h1>
@@ -26,9 +26,9 @@
                         <p class="font-semibold">{{ auth()->user()->name }}</p>
                         <div class="-mt-1">
                             <!-- Authentication -->
-                            <form method="POST" action="https://shift.infolksgroup.com/logout">
-                                <input type="hidden" name="_token" value="eLgU7VvYUbYtRwSHJlsQ150E6LoOdkknhKdzeSJP">
-                                <a href="https://shift.infolksgroup.com/logout" class="text-xs text-slate-500"
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{ route('logout') }}" class="text-xs text-slate-500"
                                     onclick="event.preventDefault();
                                                     this.closest('form').submit();">
                                     Log Out

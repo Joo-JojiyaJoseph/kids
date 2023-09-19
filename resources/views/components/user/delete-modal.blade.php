@@ -2,7 +2,7 @@
 
 {{-- Delete Modal --}}
 <x-modal name="confirm-user-deletion-{{ $user }}" focusable>
-    <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+    <form method="post" action="{{ route('user.destroy', $user) }}" class="p-6">
         @csrf
         @method('delete')
 

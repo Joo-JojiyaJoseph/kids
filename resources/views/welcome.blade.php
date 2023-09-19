@@ -17,6 +17,9 @@
 <body class="antialiased">
     <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-gray-100">
         <div class="max-w-7xl mx-auto p-6 lg:p-8">
+            <div class="flex items-center justify-center">
+                <img src="{{ asset('images/logo/logo.png') }}" width="100" height="100" class="w-60 h-auto object-cover" alt="Uncle Bun">
+            </div>
             <h1 class="text-3xl font-semibold text-center">Kitchen Management System <br> (KMS)</h1>
             <div class="flex items-center justify-center mt-14">
                 <a href="{{ route('login') }}" class="bg-blue-300 px-6 py-2 rounded-lg border border-black text-black text-lg font-semibold uppercase tracking-wider">Login</a>
