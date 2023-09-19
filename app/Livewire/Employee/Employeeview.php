@@ -20,19 +20,4 @@ class Employeeview extends Component
         $this->employees = Employee::where('name', 'like', '%'.$this->searchTerm.'%')->get();
         return view('livewire.employee.employeeview');
     }
-
-    // public function editEmployee($id)
-    // {
-    //     return redirect()->route('employee.show',$id);
-    // }
-
-    // public function addEmployee()
-    // {
-    //    return view('employee.add');
-    // }
-    // public function deleteEmployee($id)
-    // {
-    //     return redirect()->route('employee.destroy',$id);
-
-    // }
 }

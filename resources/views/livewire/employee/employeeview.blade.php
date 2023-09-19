@@ -1,4 +1,4 @@
-<div class="shadow border-b border-gray-200 rounded-xl my-10 overflow-x-auto">
+<div class="shadow border-b border-gray-200 rounded-xl my-10">
     <div class="w-full flex justify-end px-10 py-3">
         <input wire:model="searchTerm" wire:keydown.debounce.300ms="search" type="text" placeholder="Search Employee"
             class="rounded-lg border-gray-700">
@@ -59,7 +59,7 @@
                    <a href="{{route('employee.show',$employee['id'])}}"> <x-primary-button>
                         View More
                     </x-primary-button></a>
-             
+
 
 
 </div>
