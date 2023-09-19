@@ -17,17 +17,68 @@
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased">
-    <div class="flex h-screen dark:bg-gray-900">
-        {{-- Navigation --}}
-        @include('layouts.side-navigation')
+<body x-data="data" class="font-sans antialiased">
+    <div class="flex h-screen font-sans bg-blue-50/50" :class="{ 'overflow-hidden': isSideMenuOpen }" x-cloak>
+        <!-- Desktop sidebar -->
+        @include('layouts.navigation')
+        <!-- Mobile sidebar -->
+        @include('layouts.navigation-mobile')
+        <div class="flex flex-col flex-1 w-full">
+            @include('layouts.top-menu')
+            <main class="h-full overflow-y-auto">
+                <div class="container grid px-6 mx-auto">
+                    <h2 class="my-6 text-2xl font-semibold text-gray-700">
+                        {{ $header }}
+                    </h2>
 
-        <!-- Page Content -->
-        <main class="w-full h-full bg-gray-100 overflow-y-auto">
-            {{ $slot }}
-        </main>
+                    @include('inc.notifications')
+
+                    {{ $slot }}
+                </div>
+            </main>
+        </div>
     </div>
     @livewireScripts
+
+    {{-- Alpine --}}
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('data', () => ({
+                isProfileMenuOpen: false,
+                toggleProfileMenu() {
+                    this.isProfileMenuOpen = !this.isProfileMenuOpen
+                },
+
+                closeProfileMenu() {
+                    this.isProfileMenuOpen = false
+                },
+
+                isSideMenuOpen: false,
+                toggleSideMenu() {
+                    this.isSideMenuOpen = !this.isSideMenuOpen
+                },
+
+                closeSideMenu() {
+                    this.isSideMenuOpen = false
+                },
+
+                isMultiLevelMenuOpen: false,
+                toggleMultiLevelMenu() {
+                    this.isMultiLevelMenuOpen = !this.isMultiLevelMenuOpen
+                },
+
+                notify: true,
+                toggleNotify() {
+                    this.notify = !this.notify
+                },
+
+                isMainMenuOpen: true,
+                toggleMainMenu() {
+                    this.isMainMenuOpen = !this.isMainMenuOpen
+                }
+            }))
+        })
+    </script>
 </body>
 
 </html>
