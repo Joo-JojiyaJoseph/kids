@@ -32,6 +32,7 @@ return new class extends Migration
 
             $table->string('visa_charge');
             $table->string('insurance');
+            $table->string('salary');
             $table->timestamps();
         });
     }

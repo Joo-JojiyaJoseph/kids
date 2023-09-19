@@ -28,6 +28,7 @@ class Employee extends Model
         'bonus',
         'visa_charge',
         'insurance',
+        'salary',
     ];
 
 

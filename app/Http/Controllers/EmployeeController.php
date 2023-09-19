@@ -30,32 +30,12 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $validateUser = Validator::make(
-            $request->all(),
-            [
+        $request->validate([
                 'name' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'address' => 'required',
-                'designation' => 'required',
-                'started_on' => 'required',
-                'ended_on' => 'required',
-                'accomadation' => 'required',
-                'u_type' => 'required',
-                'password' => 'required',
-                'c_password' => 'required|same:password',
-                'allowance' => 'required',
-                'transportaion_expense' => 'required',
-                'mobile' => 'required',
-                'vehicle' => 'required',
-                'yearlyticket' => 'required|same:password',
-                'medical_payment' => 'required',
-                'bonus' => 'required',
-                'visa_charge' => 'required',
-                'insurance' => 'required',
-
+                'email' => 'required|email|unique:employees,email',
+                'mobile' => 'required|numeric',
             ]
         );
-
         $data=[
             'name' => $request->name,
             'email' => $request->email,
@@ -66,7 +46,7 @@ class EmployeeController extends Controller
             'ended_on' => $request->endedOn,
             'accomadation' => $request->accomadation,
             'allowance' => $request->allowance,
-            'transportaion_expense'=> $request->transportation_expence,
+            'transportaion_expense'=> $request->transportation_expense,
 
             'mobile' => $request->mobile,
             'vehicle' => $request->vehicle,
@@ -76,7 +56,9 @@ class EmployeeController extends Controller
             'bonus' => $request->bonus,
             'visa_charge' => $request->visa_charge,
             'insurance' => $request->insurance,
+            'salary' => $request->salary,
         ];
+
         Employee::create($data);
         return redirect()->route('employee.index')->with('status',"added sucessfully");
 
@@ -107,28 +89,10 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validateUser = Validator::make(
-            $request->all(),
-            [
+        $request->validate([
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email',
-                'address' => 'required',
-                'designation' => 'required',
-                'started_on' => 'required',
-                'ended_on' => 'required',
-                'accomadation' => 'required',
-                'u_type' => 'required',
-                'password' => 'required',
-                'c_password' => 'required|same:password',
-                'allowance' => 'required',
-                'transportaion_expense' => 'required',
-                'mobile' => 'required',
-                'vehicle' => 'required',
-                'yearlyticket' => 'required|same:password',
-                'medical_payment' => 'required',
-                'bonus' => 'required',
-                'visa_charge' => 'required',
-                'insurance' => 'required',
+                'mobile' => 'required|numeric',
 
             ]
         );
@@ -143,7 +107,7 @@ class EmployeeController extends Controller
             'ended_on' => $request->endedOn,
             'accomadation' => $request->accomadation,
             'allowance' => $request->allowance,
-            'transportaion_expense'=> $request->transportation_expence,
+            'transportaion_expense'=> $request->transportation_expense,
 
             'mobile' => $request->mobile,
             'vehicle' => $request->vehicle,
@@ -153,6 +117,7 @@ class EmployeeController extends Controller
             'bonus' => $request->bonus,
             'visa_charge' => $request->visa_charge,
             'insurance' => $request->insurance,
+            'salary' => $request->salary,
         ];
 
         $employee = Employee::find($id);

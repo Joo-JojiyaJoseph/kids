@@ -11,6 +11,15 @@
                 <x-primary-button>
                     Add Employee
                 </x-primary-button>
+                @if (session('status') === 'added sucessfully')
+                <p
+                    x-data="{ show: true }"
+                    x-show="show"
+                    x-transition
+                    x-init="setTimeout(() => show = false, 2000)"
+                    class="text-sm text-gray-600 dark:text-gray-400"
+                >{{ __('Added sucessfully') }}</p>
+            @endif
             </a>
         </div>
     </div>
