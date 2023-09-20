@@ -1,7 +1,7 @@
 <div class="shadow border-b border-gray-200 rounded-xl my-10">
     <div class="w-full flex justify-end px-10 py-3">
-        <input wire:model="searchTerm" wire:keydown.debounce.300ms="search" type="text" placeholder="Search Employee"
-            class="rounded-lg border-gray-700">
+        <input class="w-1/3 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-full shadow-sm"
+        wire:model.live="search" type="search" placeholder="Search in Name">
     </div>
     <table class="divide-y divide-gray-200 w-full p-10">
         <thead class="bg-gray-50">
@@ -32,9 +32,9 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            @foreach ($employees as $employee)
+            @forelse ($employees as $employee)
                 <td class="px-6 py-4 whitespace-nowrap">
-                    {{ $loop->iteration }}
+                    {{ $loop->iteration + ($employees->currentPage() - 1) * $employees->perPage() }}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     {{ $employee['name'] }}
@@ -66,8 +66,16 @@
 
 </td>
 </tr>
-@endforeach
+@empty
+<tr>
+    <td class="px-4 py-3" colspan="6">No Data found...</td>
+</tr>
+@endforelse
 </tbody>
 </table>
+<div class="mt-4 px-10">
+    {{ $employees->links() }}
+</div>
+
 
 </div>
