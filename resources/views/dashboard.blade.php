@@ -1,9 +1,7 @@
 <x-app-layout>
-    <div class="w-11/12 mx-auto mt-16">
-        <h2 class="font-semibold text-3xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </div>
+    <x-slot name="header">
+        {{ __('Dashboard') }}
+    </x-slot>
 
     <div class="py-12">
         <div class="w-11/12 mx-auto grid grid-cols-4 gap-5">
@@ -30,7 +28,5 @@
                     </div>
                 </a>
             </div>
-        </div>
-
-    </div>
+   
 </x-app-layout>
