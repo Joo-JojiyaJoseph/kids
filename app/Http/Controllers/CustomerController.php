@@ -30,7 +30,7 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:employees,email',
+            'email' => 'required|email|unique:customers,email',
             'mobile' => 'required|numeric',
         ]
     );
@@ -59,7 +59,9 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $customers=Customer::find($id);
+        return view('customer.edit',compact('customers'));
+
     }
 
     /**
@@ -67,7 +69,24 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:customers,email',
+            'mobile' => 'required|numeric',
+        ]
+    );
+    $data=[
+        'name' => $request->name,
+        'email' => $request->email,
+        'address' => $request->address,
+        'mobile' => $request->mobile,
+
+    ];
+
+    $customer = Customer::find($id);
+    $customer->update($data);
+    return redirect()->route('customer.index')->with('status',"Updated sucessfully");
+
     }
 
     /**
@@ -75,7 +94,6 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        dd($id);
         Customer::destroy($id);
         return redirect()->route('customer.index')->with('status',"Deleted sucessfully");
     }
