@@ -4,20 +4,16 @@ namespace App\Livewire\Employee;
 
 use App\Models\Employee;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Employeeview extends Component
 {
-    public $employees;
+    use WithPagination;
+    public $search ="";
 
-    public $searchTerm ="";
-
-    public function search()
-    {
-        $this->employees = Employee::where('name', 'like', '%' . $this->searchTerm . '%')->get();
-    }
     public function render()
     {
-        $this->employees = Employee::where('name', 'like', '%'.$this->searchTerm.'%')->get();
-        return view('livewire.employee.employeeview');
+        $employees = Employee::where('name', 'like', '%'.$this->search.'%')->orderBy('id')->paginate();
+        return view('livewire.employee.employeeview',compact('employees'));
     }
 }
