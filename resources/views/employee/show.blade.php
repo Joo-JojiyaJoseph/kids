@@ -1,10 +1,9 @@
 <x-app-layout>
     <div class="container mx-auto bg-white rounded shadow-m">
-    <div class="w-full mx-auto mt-16 p-3 bg-gray-50 ">
-        <h2 class="font-semibold text-3xl text-gray-800 dark:text-gray-200 leading-tight text-center">
+        <x-slot name="header">
             {{ __($employee['name']) }}
-        </h2>
-    </div>
+        </x-slot>
+
         <div class="px-6 pb-4 grid xl:grid-cols-[45%,10%,45%] grid-cols-1 gap-5 p-10">
             <div class="px-6 pb-4 grid grid-cols-3 gap-5 p-10 ">
                 <div>
