@@ -1,9 +1,11 @@
 <x-app-layout>
     <div class="w-11/12 mx-auto mt-16">
 
-        <h2 class="font-semibold text-3xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('New Employee') }}
-        </h2>
+        <div>
+            <x-slot name="header">
+                {{ __('Create-Customers') }}
+            </x-slot>
+        </div>
     </div>
     <div class="container mx-auto p-4 ">
         <form class=" bg-white p-6 rounded shadow-md" action="{{ route('customer.store') }}" method="POST">
@@ -46,7 +48,7 @@
 
             <!-- Submit Button -->
             <div class="flex justify-end gap-5 p-10">
-                <a href="{{ route('employee.index') }}">
+                <a href="{{ route('customer.index') }}">
                     <x-secondary-button>
                         Cancel
                     </x-secondary-button>
