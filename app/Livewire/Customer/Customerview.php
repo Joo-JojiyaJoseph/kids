@@ -4,21 +4,17 @@ namespace App\Livewire\Customer;
 
 use App\Models\Customer;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Customerview extends Component
 {
-    public $customers;
+    use WithPagination;
+    public $search ="";
 
-    public $searchTerm ="";
-
-    public function search()
-    {
-        $this->customers = Customer::where('name', 'like', '%' . $this->searchTerm . '%')->get();
-    }
 
     public function render()
     {
-        $this->customers = Customer::where('name', 'like', '%' . $this->searchTerm . '%')->get();
-        return view('livewire.customer.customerview');
+        $customers = Customer::where('name', 'like', '%' . $this->search . '%')->orderBy('id')->paginate();
+        return view('livewire.customer.customerview',compact('customers'));
     }
 }
